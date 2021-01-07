@@ -1,45 +1,81 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.List;
 
 public class Controller {
+    @FXML
     public Button addButton;
+    @FXML
     public VBox listElements;
-    public HBox hBoxElement;
 
-    public void addElement(ActionEvent actionEvent) {
-        HBox newHBox = new HBox();
-       // newHBox.setPadding(new Insets(10,25,10,25));
-        Text text = new Text("new text");
-        text.setWrappingWidth(380.0);
+    @FXML
+    public Text wynik;
+
+    public TextField probability;
+
+    private List<Tor> torList;
 
 
-        Button deleteButton = new Button();
-        deleteButton.setText("USUN");
-        deleteButton.setTextFill(Color.RED);
-        deleteButton.setPrefWidth(55.0);
-        deleteButton.setPrefHeight(15.0);
-        deleteButton.setFont(new Font(11.0));
-       //deleteButton.
-        newHBox.getChildren().add(text);
-        newHBox.getChildren().add(deleteButton);
-        HBox.setMargin(text,new Insets(10,0,5,25));
-        HBox.setMargin(deleteButton,new Insets(10,0,5,25));
 
-        Separator separator = new Separator();
-        separator.setOpacity(0.5);
+    public void openAddElement(ActionEvent actionEvent) {
 
-        listElements.getChildren().add(newHBox);
-        listElements.getChildren().add(separator);
-        VBox.setMargin(separator, new Insets(2,20,2,20));
+        System.out.println(  actionEvent.getEventType().getName());
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("addElement.fxml"));
+//
+//            Scene scene = new Scene(fxmlLoader.load(), 500, 300);
+//            Stage stage = new Stage();
+//            stage.setTitle("Dodaj element");
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        try {
+            FXMLLoader loader = new 		  FXMLLoader(getClass().getResource("addElement.fxml"));
+            Parent root = loader.load();
+
+            AddElementController controller2 = loader.getController();
+            double prob;
+            if ( probability.getText().isEmpty())
+                prob=0.0;
+            else
+                prob = new Double(probability.getText());
+
+            controller2.updateList(listElements,torList,wynik,prob);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("DODAJ ELEMENT");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
