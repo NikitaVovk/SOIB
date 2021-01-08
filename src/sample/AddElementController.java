@@ -114,7 +114,6 @@ if (checkElementName(tor.getElementName()))
         VBox.setMargin(separator, new Insets(2,20,2,20));
 
         anchorPane.getChildren().add(vBox);
-      //  anchorPane.getChildren().add(separator);
 
 
         listElements.getChildren().add(anchorPane);
