@@ -119,10 +119,7 @@ if (checkElementName(tor.getElementName()))
 
         listElements.getChildren().add(anchorPane);
 
-//        listElements.getChildren().add(newHBox);
-//        listElements.getChildren().add(separator);
 
-     //   VBox.setMargin(separator, new Insets(2,20,2,20));
 
         deleteButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
