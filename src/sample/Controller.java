@@ -19,8 +19,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -34,11 +36,13 @@ public class Controller {
 
     public TextField probability;
 
-    private List<Tor> torList;
+    private ArrayList<Tor> torList;
 
 
 
     public void openAddElement(ActionEvent actionEvent) {
+
+
 
         System.out.println(  actionEvent.getEventType().getName());
 //        try {
@@ -64,6 +68,8 @@ public class Controller {
                 prob=0.0;
             else
                 prob = new Double(probability.getText());
+            if (torList==null)
+                torList = new ArrayList<>();
 
             controller2.updateList(listElements,torList,wynik,prob);
 
